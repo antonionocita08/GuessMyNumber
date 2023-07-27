@@ -1,0 +1,70 @@
+"use strict";
+
+//button Again
+const btn_Again = document.getElementById("btnAgain");
+//button Check
+const btn_Check = document.getElementById("btnCheck");
+
+//button popup
+const btn_pu = document.getElementById("btn-popup");
+const btn_pu2 = document.getElementById("btn-popup2");
+
+const text = document.getElementById("insertNumber");
+
+//generate Random numeric between 1 and 20
+const generate = function () {
+  const min = 1;
+  const max = 20;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+const numberGenerate = generate();
+
+//when button again is pressed reload a page
+btn_Again.addEventListener("click", () => {
+  window.location.reload();
+});
+
+let score = {
+  x: 20,
+};
+
+btn_Check.addEventListener("click", function () {
+  const realValue = text.value;
+  const number = Number(realValue);
+
+  if (isNaN(number) || number == 0) {
+    document.getElementById("pu").style.display = "inline";
+  } else if (number < 1 || number > 20) {
+    document.getElementById("pu2").style.display = "inline";
+  } else if (number < numberGenerate) {
+    score.x--;
+    document.getElementById("scoreID").innerHTML = `Score: ${score.x}`;
+    document.getElementById("tip").innerHTML = "Pick a higher number";
+  } else if (number > numberGenerate) {
+    score.x--;
+    document.getElementById("scoreID").innerHTML = `Score: ${score.x}`;
+    document.getElementById("tip").innerHTML = "Pick a lower number";
+  } else {
+    document.body.style.backgroundColor = "green";
+    let higschore = score.x;
+    score.x = 0;
+    document.getElementById("outputText").innerHTML = numberGenerate;
+    document.getElementById("scoreID").innerHTML = `Score: ${score.x}`;
+    document.getElementById("hystoriID").innerHTML = `Highscore: ${higschore}`;
+    document.getElementById("tip").innerHTML = "WINNNN!!!!!!";
+    btn_Check.disabled = true;
+    btn_Check: hover.backgroundColor = "white";
+  }
+
+  text.value = "";
+});
+
+//close popup when click ok
+btn_pu.addEventListener("click", () => {
+  document.getElementById("pu").style.display = "none";
+});
+
+btn_pu2.addEventListener("click", () => {
+  document.getElementById("pu2").style.display = "none";
+});

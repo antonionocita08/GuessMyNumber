@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GuessMyNumber</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <button class="again" id="btnAgain">Again</button>
+      <span class="text">(Between 1 and 20)</span>
+    </div>
+    <div class="main">
+      <div class="popup" id="pu">
+        <img src="alert-svgrepo-com.svg" alt="alert" />
+        <span class="text_popup">Bad value! Please insert a number!</span>
+        <button id="btn-popup">OK!</button>
+      </div>
+      <div class="popup" id="pu2">
+        <img src="alert-svgrepo-com.svg" alt="alert" />
+        <span class="text_popup"
+          >Out range! Insert a number beetwen 1 and 20</span
+        >
+        <button id="btn-popup2">OK!</button>
+      </div>
+      <span class="text-main">Guess My Number!</span>
+      <div class="outputNumber">
+        <div class="output-text" id="outputText">?</div>
+        <div class="line"></div>
+      </div>
+      <div class="inputNumber">
+        <input
+          type="text"
+          name="number"
+          id="insertNumber"
+          class="input-number"
+        />
+        <button class="check" id="btnCheck">Check!</button>
+        <div class="text-score">
+          <span class="win" id="tip">Play</span>
+          <span class="score" id="scoreID">Score: 20</span>
+          <span class="history" id="hystoriID">Highscore: 0</span>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
