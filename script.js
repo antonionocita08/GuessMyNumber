@@ -13,21 +13,21 @@ const text = document.getElementById("insertNumber");
 
 //generate Random numeric between 1 and 20
 const generate = function () {
-  const min = 1;
+  const min = 5;
   const max = 20;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const numberGenerate = generate();
+console.log(numberGenerate);
 
 //when button again is pressed reload a page
 btn_Again.addEventListener("click", () => {
   window.location.reload();
 });
 
-let score = {
-  x: 20,
-};
+//contator variable
+let score = 20;
 
 btn_Check.addEventListener("click", function () {
   const realValue = text.value;
@@ -38,23 +38,22 @@ btn_Check.addEventListener("click", function () {
   } else if (number < 1 || number > 20) {
     document.getElementById("pu2").style.display = "inline";
   } else if (number < numberGenerate) {
-    score.x--;
-    document.getElementById("scoreID").innerHTML = `Score: ${score.x}`;
+    score--;
+    document.getElementById("scoreID").innerHTML = `Score: ${score}`;
     document.getElementById("tip").innerHTML = "Pick a higher number";
   } else if (number > numberGenerate) {
-    score.x--;
-    document.getElementById("scoreID").innerHTML = `Score: ${score.x}`;
+    score--;
+    document.getElementById("scoreID").innerHTML = `Score: ${score}`;
     document.getElementById("tip").innerHTML = "Pick a lower number";
   } else {
     document.body.style.backgroundColor = "green";
-    let higschore = score.x;
-    score.x = 0;
+    let higschore = score;
+    score = 0;
     document.getElementById("outputText").innerHTML = numberGenerate;
-    document.getElementById("scoreID").innerHTML = `Score: ${score.x}`;
+    document.getElementById("scoreID").innerHTML = `Score: ${score}`;
     document.getElementById("hystoriID").innerHTML = `Highscore: ${higschore}`;
     document.getElementById("tip").innerHTML = "WINNNN!!!!!!";
     btn_Check.disabled = true;
-    btn_Check: hover.backgroundColor = "white";
   }
 
   text.value = "";
