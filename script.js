@@ -26,7 +26,7 @@ btn_Again.addEventListener("click", () => {
   window.location.reload();
 });
 
-//contator variable
+//counter variable
 let score = 20;
 
 btn_Check.addEventListener("click", function () {
