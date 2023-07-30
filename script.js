@@ -8,6 +8,7 @@ const btn_Check = document.getElementById("btnCheck");
 //button popup
 const btn_pu = document.getElementById("btn-popup");
 const btn_pu2 = document.getElementById("btn-popup2");
+const btn_pu3 = document.getElementById("btn-popup3");
 
 const text = document.getElementById("insertNumber");
 
@@ -19,7 +20,6 @@ const generate = function () {
 };
 
 const numberGenerate = generate();
-console.log(numberGenerate);
 
 //when button again is pressed reload a page
 btn_Again.addEventListener("click", () => {
@@ -35,8 +35,10 @@ btn_Check.addEventListener("click", function () {
 
   if (isNaN(number) || number == 0) {
     document.getElementById("pu").style.display = "inline";
+    btn_Check.disabled = true;
   } else if (number < 1 || number > 20) {
     document.getElementById("pu2").style.display = "inline";
+    btn_Check.disabled = true;
   } else if (number < numberGenerate) {
     score--;
     document.getElementById("scoreID").innerHTML = `Score: ${score}`;
@@ -56,14 +58,26 @@ btn_Check.addEventListener("click", function () {
     btn_Check.disabled = true;
   }
 
+  if (score == 0) {
+    document.getElementById("pu3").style.display = "inline";
+    btn_Check.disabled = true;
+  }
   text.value = "";
+});
+
+// when you lose
+
+btn_pu3.addEventListener("click", () => {
+  window.location.reload();
 });
 
 //close popup when click ok
 btn_pu.addEventListener("click", () => {
   document.getElementById("pu").style.display = "none";
+  btn_Check.disabled = false;
 });
 
 btn_pu2.addEventListener("click", () => {
   document.getElementById("pu2").style.display = "none";
+  btn_Check.disabled = false;
 });
