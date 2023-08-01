@@ -40,12 +40,8 @@ btn_Check.addEventListener("click", function () {
   } else if (number < 1 || number > 20) {
     document.getElementById("pu2").style.display = "inline";
     btn_Check.disabled = true;
-  } else if (number < numberGenerate) {
-    decrement();
-    document.getElementById("tip").innerHTML = "Pick a higher number";
-  } else if (number > numberGenerate) {
-    decrement();
-    document.getElementById("tip").innerHTML = "Pick a lower number";
+  } else if (number < numberGenerate || number > numberGenerate) {
+    decrement(number);
   } else {
     win();
   }
@@ -75,9 +71,11 @@ btn_pu2.addEventListener("click", () => {
 });
 
 //function game decrement
-let decrement = () => {
+let decrement = (number) => {
   score--;
   document.getElementById("scoreID").innerHTML = `Score: ${score}`;
+  document.getElementById("tip").innerHTML =
+    number < numberGenerate ? "Pick a higher number" : "Pick a lower number";
 };
 
 //function game win
