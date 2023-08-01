@@ -21,14 +21,15 @@ const generate = function () {
 
 const numberGenerate = generate();
 
-//when button again is pressed reload a page
+//when button again is pressed reload
 btn_Again.addEventListener("click", () => {
   window.location.reload();
 });
 
-//counter variable
+//contator variable
 let score = 20;
 
+//logic game
 btn_Check.addEventListener("click", function () {
   const realValue = text.value;
   const number = Number(realValue);
@@ -40,25 +41,17 @@ btn_Check.addEventListener("click", function () {
     document.getElementById("pu2").style.display = "inline";
     btn_Check.disabled = true;
   } else if (number < numberGenerate) {
-    score--;
-    document.getElementById("scoreID").innerHTML = `Score: ${score}`;
+    decrement();
     document.getElementById("tip").innerHTML = "Pick a higher number";
   } else if (number > numberGenerate) {
-    score--;
-    document.getElementById("scoreID").innerHTML = `Score: ${score}`;
+    decrement();
     document.getElementById("tip").innerHTML = "Pick a lower number";
   } else {
-    document.body.style.backgroundColor = "green";
-    let higschore = score;
-    score = 0;
-    document.getElementById("outputText").innerHTML = numberGenerate;
-    document.getElementById("scoreID").innerHTML = `Score: ${score}`;
-    document.getElementById("hystoriID").innerHTML = `Highscore: ${higschore}`;
-    document.getElementById("tip").innerHTML = "WINNNN!!!!!!";
-    btn_Check.disabled = true;
+    win();
   }
 
-  if (score == 0) {
+  //disable button check when score == 0
+  if (score < 1) {
     document.getElementById("pu3").style.display = "inline";
     btn_Check.disabled = true;
   }
@@ -66,7 +59,6 @@ btn_Check.addEventListener("click", function () {
 });
 
 // when you lose
-
 btn_pu3.addEventListener("click", () => {
   window.location.reload();
 });
@@ -81,3 +73,20 @@ btn_pu2.addEventListener("click", () => {
   document.getElementById("pu2").style.display = "none";
   btn_Check.disabled = false;
 });
+
+//function game decrement
+let decrement = () => {
+  score--;
+  document.getElementById("scoreID").innerHTML = `Score: ${score}`;
+};
+
+//function game win
+let win = () => {
+  document.body.style.backgroundColor = "green";
+  let higschore = score;
+  document.getElementById("outputText").innerHTML = numberGenerate;
+  document.getElementById("scoreID").innerHTML = `Score: ${score}`;
+  document.getElementById("hystoriID").innerHTML = `Highscore: ${higschore}`;
+  document.getElementById("tip").innerHTML = "WINNNN!!!!!!";
+  btn_Check.disabled = true;
+};
